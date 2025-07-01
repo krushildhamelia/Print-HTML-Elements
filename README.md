@@ -1,4 +1,50 @@
 
+
+## 📄 Usage for Dynamic Content (Infinite Scroll, Lazy Loading)
+
+### 1. Basic Dynamic Content PDF:
+```js
+printDynamicContentToPDF("#scrollable-element")
+```
+
+### 2. Advanced Dynamic Content PDF:
+```js
+printDynamicContentToPDF("#scrollable-element", {
+  filename: "complete-content.pdf",
+  scrollDelay: 800,        // ms between scrolls
+  scrollStep: 500,         // pixels to scroll each time
+  maxScrollAttempts: 150,  // max scroll attempts
+  waitTimeout: 5000,       // ms to wait for content load
+  scale: 1.5,              // render scale
+  format: "a4",
+  orientation: "portrait",
+  onProgress: (progress, attempt, max) => {
+    console.log(`Progress: ${progress}%`);
+  }
+})
+```
+
+## 🖼️ Usage for Static Content
+
+### 3. Static Content PDF:
+```js
+printElementToPDF("#static-element")
+```
+
+### 4. Browser Print (Vectorized):
+```js
+printElementWithBrowser("#element", "report.pdf")
+```
+
+## 🧠 How the Dynamic Method Works
+
+- Auto-scrolls through the entire element  
+- Waits for new content to load at each scroll position  
+- Detects when no more content is available  
+- Captures **ALL** content including dynamically loaded items  
+- Generates a **complete PDF** with everything visible  
+
+
 # 🔧 Major Fixes for Content Trimming
 
 ## 1. Advanced Dimension Calculation
@@ -30,6 +76,19 @@
 # 🚀 Updated Usage
 
 ## For Troubleshooting:
+
+```javascript
+// First, debug to see what's happening
+debugElementDimensions('#your-element');
+
+// Then generate PDF with dynamic content
+printDynamicContentToPDF('#your-element', {
+    filename: 'complete-content.pdf',
+    scale: 1.2,  // Try different scales if needed
+    scrollDelay: 1000,
+    waitTimeout: 5000
+});
+```
 
 ```javascript
 // First, debug to see what's happening
